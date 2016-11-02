@@ -1,6 +1,6 @@
 *.settings.xml
 .project
 */target/
-*/build/
+build/
 */.settings/
-*/.gradle/
+.gradle/

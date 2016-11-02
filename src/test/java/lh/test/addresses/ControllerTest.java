@@ -33,9 +33,6 @@ import static org.mockito.BDDMockito.*;
 public class ControllerTest {
 	public static Logger LOG = Logger.getLogger(ControllerTest.class);
 	
-//	@Autowired
-//	private RestTemplate restTemplate;
-	
 	@Autowired
 	private MockMvc mvc;
 	
@@ -46,10 +43,12 @@ public class ControllerTest {
 	public void controllerTest() throws Exception{
 		List<Address> addList = new ArrayList<Address>();
 		Address address = new Address();
-		address.setSummaryline("Hammersmith Grove, London W6 0LG");
+		address.setBuildingname("Big House");
+		address.setPostcode("W60LG");
+		address.setStreet("Hammersmith Grove");
 		addList.add(address);
 		given(this.dataService.retrieve("W60LG")).willReturn(addList.toArray(new DataObject[0]));
-		this.mvc.perform(get("/address/W60LG")).andExpect(content().string("[{\"summaryline\":\"Hammersmith Grove, London W6 0LG\"}]"));
+		this.mvc.perform(get("/address/W60LG")).andExpect(content().string("{\"Street\":\"Hammersmith Grove\",\"Name\":\"Big House\"}"));
 		
 	}
 
